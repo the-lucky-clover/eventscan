@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EventScan</title>
+  <style>
+    body { width: 300px; padding: 10px; font-family: Arial, sans-serif; }
+    button { margin: 5px; padding: 8px; }
+    .event { border: 1px solid #ccc; padding: 5px; margin: 5px 0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h3>EventScan</h3>
+  <div id="settingsSection">
+    <div id="apiKeySection">
+      <input type="password" id="apiKey" placeholder="OpenAI API Key">
+      <button id="saveKey">Save Key</button>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="enableReminders"> Enable Reminders Integration
+      </label>
+    </div>
+  </div>
+  <button id="scanBtn">Scan Current Tab</button>
+  <div id="loading" class="hidden">Processing...</div>
+  <div id="events"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
