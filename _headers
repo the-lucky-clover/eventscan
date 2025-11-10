@@ -1,0 +1,31 @@
+# Cloudflare Pages Build Configuration
+[build]
+  command = ""
+  publish = "landing-page"
+  
+[build.environment]
+  NODE_VERSION = "18"
+  
+[[redirects]]
+  from = "/download"
+  to = "/calclik-chrome-extension.zip"
+  status = 302
+  
+[[redirects]]
+  from = "/.well-known/*"
+  to = "/.well-known/:splat"
+  status = 200
+  
+[[headers]]
+  for = "*.zip"
+  [headers.values]
+    Content-Type = "application/zip"
+    Content-Disposition = "attachment; filename=calclik-chrome-extension.zip"
+    
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

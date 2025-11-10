@@ -1,0 +1,3 @@
+name = "calclik"
+pages_build_output_dir = "landing-page"
+compatibility_date = "2023-11-10"
