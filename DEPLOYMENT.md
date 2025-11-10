@@ -26,7 +26,7 @@
 3. **Connect GitHub Repository**
    - Choose "GitHub" as git provider
    - Authorize Cloudflare to access your repositories
-   - Select repository: `the-lucky-clover/eventscan`
+   - Select repository: `the-lucky-clover/calclik`
    - Choose branch: `master`
 
 ### 1.2 Configure Build Settings

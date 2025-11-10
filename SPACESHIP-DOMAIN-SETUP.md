@@ -261,7 +261,7 @@ Renewal: 30 days before expiration
 ### Development/Backup URLs
 ```
 🧪 Cloudflare: https://19a76ed5.calclik.pages.dev
-📦 GitHub: https://github.com/the-lucky-clover/eventscan
+📦 GitHub: https://github.com/the-lucky-clover/calclik
 ```
 
 ---
