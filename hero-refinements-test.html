@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 CALCLiK Hero Typography & Animation Refinements</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 2rem;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .refinements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .refinement-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+        }
+        .refinement-card h3 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .refinement-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .refinement-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .refinement-card li:last-child {
+            border-bottom: none;
+        }
+        .checkmark {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #000;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            margin: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        .demo-section {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .typography-demo {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .headline-example {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .animation-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .shimmer-example {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-example:hover {
+            border-color: #00ff88;
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
+        }
+        .comparison-table {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comparison-table th {
+            color: #00ff88;
+            font-weight: 600;
+        }
+        .before {
+            color: #ff6b6b;
+        }
+        .after {
+            color: #00ff88;
+        }
+        @media (max-width: 768px) {
+            .refinements-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .headline-example {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="header">
+            <h1>🎨 Typography & Animation Refinements</h1>
+            <p>Detailed improvements to hero section typography, alignment, and shimmer animations</p>
+            <a class="test-button" href="https://calclik.pages.dev" target="_blank">
+                <i data-lucide="external-link"></i>
+                View Live Site
+            </a>
+        </div>
+
+        <div class="demo-section">
+            <h2>🔤 Typography Improvements</h2>
+            <p>Enhanced headline typography to prevent orphans and improve readability</p>
+        </div>
+
+        <div class="typography-demo">
+            <h3>Hero Headline Examples</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+                <div>
+                    <h4 class="before">❌ Before (with orphans)</h4>
+                    <div class="headline-example">
+                        Discover Events<br>
+                        Instantly
+                    </div>
+                    <p style="font-size: 0.9rem; color: #ccc;">Single word "Instantly" creates an orphan line</p>
+                </div>
+                <div>
+                    <h4 class="after">✅ After (balanced)</h4>
+                    <div class="headline-example">
+                        Discover Events<br>
+                        Instantly with AI
+                    </div>
+                    <p style="font-size: 0.9rem; color: #ccc;">Balanced lines with proper word grouping</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="refinements-grid">
+            <div class="refinement-card">
+                <h3>
+                    <i data-lucide="type"></i>
+                    Typography Fixes
+                </h3>
+                <ul>
+                    <li><span class="checkmark">✅</span> Prevented single-word orphan lines</li>
+                    <li><span class="checkmark">✅</span> Balanced headline across 2-3 lines</li>
+                    <li><span class="checkmark">✅</span> Added word-break and overflow-wrap controls</li>
+                    <li><span class="checkmark">✅</span> Improved mobile line spacing</li>
+                    <li><span class="checkmark">✅</span> Enhanced readability hierarchy</li>
+                </ul>
+            </div>
+
+            <div class="refinement-card">
+                <h3>
+                    <i data-lucide="align-left"></i>
+                    Alignment Improvements
+                </h3>
+                <ul>
+                    <li><span class="checkmark">✅</span> Left-aligned CALCLiK beta verbiage</li>
+                    <li><span class="checkmark">✅</span> Grid-aligned with left hero section</li>
+                    <li><span class="checkmark">✅</span> Centered on mobile for optimal experience</li>
+                    <li><span class="checkmark">✅</span> Consistent flex-start justification</li>
+                    <li><span class="checkmark">✅</span> Professional visual hierarchy</li>
+                </ul>
+            </div>
+
+            <div class="refinement-card">
+                <h3>
+                    <i data-lucide="minimize-2"></i>
+                    URL Scanner Sizing
+                </h3>
+                <ul>
+                    <li><span class="checkmark">✅</span> Reduced width by 20% (now 80% width)</li>
+                    <li><span class="checkmark">✅</span> Maintained optimal height for usability</li>
+                    <li><span class="checkmark">✅</span> Max-width constraint at 500px</li>
+                    <li><span class="checkmark">✅</span> Responsive mobile width (90%)</li>
+                    <li><span class="checkmark">✅</span> Better proportions in hero layout</li>
+                </ul>
+            </div>
+
+            <div class="refinement-card">
+                <h3>
+                    <i data-lucide="sparkles"></i>
+                    Smart Shimmer Animations
+                </h3>
+                <ul>
+                    <li><span class="checkmark">✅</span> Hover-triggered shimmer effects</li>
+                    <li><span class="checkmark">✅</span> Click-activated animations</li>
+                    <li><span class="checkmark">✅</span> Mouse idle detection (5s delay)</li>
+                    <li><span class="checkmark">✅</span> Random ambient shimmer when idle</li>
+                    <li><span class="checkmark">✅</span> No constant distracting animations</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>✨ Animation Behavior Test</h2>
+            <p>Hover over or click the examples below to see the new shimmer behavior</p>
+            
+            <div class="animation-demo">
+                <div class="shimmer-example" onclick="this.classList.add('shimmer-active'); setTimeout(() => this.classList.remove('shimmer-active'), 1500);">
+                    <h4>Hover Effect</h4>
+                    <p>Shimmer appears on hover</p>
+                </div>
+                <div class="shimmer-example" onclick="this.classList.add('shimmer-active'); setTimeout(() => this.classList.remove('shimmer-active'), 1500);">
+                    <h4>Click Effect</h4>
+                    <p>Shimmer triggers on click</p>
+                </div>
+                <div class="shimmer-example" onclick="this.classList.add('shimmer-active'); setTimeout(() => this.classList.remove('shimmer-active'), 1500);">
+                    <h4>Idle Trigger</h4>
+                    <p>Random shimmer when idle</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h3>📊 Before vs After Comparison</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th class="before">Before</th>
+                        <th class="after">After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Typography</strong></td>
+                        <td class="before">Single word orphans, unbalanced lines</td>
+                        <td class="after">Balanced 2-3 line layout, no orphans</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alignment</strong></td>
+                        <td class="before">Centered logo/beta badge</td>
+                        <td class="after">Left-aligned, grid-aligned layout</td>
+                    </tr>
+                    <tr>
+                        <td><strong>URL Scanner</strong></td>
+                        <td class="before">Full width, overwhelming</td>
+                        <td class="after">20% narrower, better proportions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Animations</strong></td>
+                        <td class="before">Constant shimmer loops</td>
+                        <td class="after">Smart trigger-based shimmer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Experience</strong></td>
+                        <td class="before">Distracting, unbalanced</td>
+                        <td class="after">Focused, professional, engaging</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="demo-section">
+            <h3>🧪 Live Testing Instructions</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; text-align: left;">
+                <div>
+                    <strong>Typography Testing:</strong>
+                    <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
+                        <li>Check headline doesn't have orphan words</li>
+                        <li>Verify mobile line breaks work well</li>
+                        <li>Test readability at different screen sizes</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Alignment Testing:</strong>
+                    <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
+                        <li>Confirm left alignment on desktop</li>
+                        <li>Verify centered alignment on mobile</li>
+                        <li>Check grid alignment with screenshot</li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Animation Testing:</strong>
+                    <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
+                        <li>Hover over elements to see shimmer</li>
+                        <li>Click elements to trigger animation</li>
+                        <li>Wait 5s idle to see ambient shimmer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+        
+        // Add shimmer effects to examples
+        document.querySelectorAll('.shimmer-example').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.classList.add('shimmer-active');
+                setTimeout(() => {
+                    this.classList.remove('shimmer-active');
+                }, 1500);
+            });
+        });
+        
+        console.log('Hero typography and animation refinements test page loaded');
+    </script>
+</body>
+</html>

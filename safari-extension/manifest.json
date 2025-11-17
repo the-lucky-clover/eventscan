@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "zro-day - Smart Event Scanner",
-  "version": "1.0",
-  "description": "Scan web pages for events and add them to your calendar",
+  "name": "CALCLiK - Smart Event Scanner",
+  "version": "1.1.0",
+  "description": "Scan web pages for events and add them to your calendar with AI-powered detection",
   "permissions": [
     "activeTab",
     "tabs",
@@ -20,7 +20,7 @@
   ],
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "zro-day"
+    "default_title": "CALCLiK"
   },
   "icons": {
     "16": "icons/icon16.png",

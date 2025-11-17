@@ -98,12 +98,26 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: 8px;
       backdrop-filter: blur(10px);
+      position: relative;
+    }
+    
+    .event.selected {
+      border-color: #00ff88;
+      background: rgba(0, 255, 136, 0.1);
+    }
+    
+    .event-checkbox {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      accent-color: #00ff88;
     }
     
     .event h4 {
       margin: 0 0 8px 0;
       color: #00ff88;
       font-size: 14px;
+      padding-right: 25px;
     }
     
     .event p {
@@ -112,17 +126,113 @@
       color: #a1a1aa;
     }
     
-    .event-buttons {
+    .event-meta {
       display: flex;
-      gap: 5px;
-      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0;
     }
     
-    .event-buttons button {
-      flex: 1;
-      padding: 6px 8px;
+    .event-tag {
+      background: rgba(0, 255, 136, 0.2);
+      color: #00ff88;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+    
+    .events-summary {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    
+    .calendar-selection {
+      margin: 15px 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .calendar-selection h4 {
+      margin: 0 0 10px 0;
+      color: #00ff88;
+      font-size: 14px;
+    }
+    
+    .calendar-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    
+    .calendar-btn {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
+      border-radius: 6px;
+      cursor: pointer;
       font-size: 11px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .calendar-btn:hover {
+      background: rgba(0, 255, 136, 0.1);
+      border-color: #00ff88;
+      color: #ffffff;
+    }
+    
+    .calendar-btn.google {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .calendar-btn.outlook {
+      background: linear-gradient(135deg, #0078d4, #106ebe);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .calendar-btn.apple {
+      background: linear-gradient(135deg, #1d1d1f, #515154);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .calendar-btn.reminders {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      border-color: transparent;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .action-buttons button {
+      flex: 1;
       margin: 0;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #a1a1aa;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
     }
     
     .hidden { display: none; }
