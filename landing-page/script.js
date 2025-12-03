@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('has-animated')) {
-        entry.target.classList.add('visible', 'has-animated');
+        // entry.target.classList.add("visible", "has-animated");
         observer.unobserve(entry.target);
       }
     });
@@ -390,9 +390,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const element = entry.target;
       
       if (entry.isIntersecting) {
-        element.classList.add('animate-expensive');
+        // element.classList.add("animate-expensive");
       } else {
-        element.classList.remove('animate-expensive');
+        // element.classList.remove("animate-expensive");
       }
     });
   }, { threshold: 0.1 });
@@ -1895,7 +1895,7 @@ function initializeAnimations() {
         // Add staggered delay based on element order
         const delay = index * 100;
         setTimeout(() => {
-          entry.target.classList.add('animate-in');
+          // entry.target.classList.add("animate-in");
         }, delay);
         animationObserver.unobserve(entry.target);
       }
