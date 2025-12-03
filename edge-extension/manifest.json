@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "CALCLiK - Smart Event Scanner",
+  "version": "1.1.0",
+  "description": "Scan web pages for events and add them to your calendar with AI-powered detection",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "https://cdn.jsdelivr.net/*",
+    "https://huggingface.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CALCLiK"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

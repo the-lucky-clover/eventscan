@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALCLiK - Smart Event Scanner</title>
+  <style>
+    body { 
+      width: 350px; 
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif; 
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+      color: #ffffff;
+    }
+    
+    /* Activation Screen */
+    .activation-screen {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    
+    .activation-logo {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a0a0f;
+      font-weight: bold;
+      font-size: 30px;
+      margin: 0 auto 20px;
+    }
+    
+    .activation-screen h2 {
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .activation-screen p {
+      color: #a1a1aa;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    
+    .privacy-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    
+    .privacy-badge {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: #00ff88;
+    }
+    
+    .price-box {
+      background: rgba(0, 255, 136, 0.1);
+      border: 2px solid #00ff88;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      color: #00ff88;
+      margin: 10px 0;
+    }
+    
+    .price-period {
+      color: #a1a1aa;
+      font-size: 12px;
+    }
+    
+    .features-list {
+      text-align: left;
+      margin: 15px 0;
+      list-style: none;
+      padding: 0;
+    }
+    
+    .features-list li {
+      padding: 6px 0;
+      font-size: 13px;
+      color: #a1a1aa;
+    }
+    
+    .features-list li::before {
+      content: "✓ ";
+      color: #00ff88;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    
+    .cta-button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+    }
+    
+    .link-button {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #a1a1aa;
+      font-size: 13px;
+      padding: 10px;
+    }
+    
+    .link-button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      box-shadow: none;
+      transform: none;
+    }
+    
+    /* License Input */
+    .license-input-section {
+      margin: 20px 0;
+      display: none;
+    }
+    
+    .license-input-section.active {
+      display: block;
+    }
+    
+    .license-input {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 14px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    
+    .license-input:focus {
+      outline: none;
+      border-color: #00ff88;
+    }
+    
+    .license-input::placeholder {
+      color: #555;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    
+    /* Main App Screen */
+    .main-screen {
+      display: none;
+      padding: 15px;
+    }
+    
+    .main-screen.active {
+      display: block;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a0a0f;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .license-badge {
+      margin-left: auto;
+      padding: 4px 8px;
+      background: rgba(0, 255, 136, 0.2);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 12px;
+      font-size: 10px;
+      color: #00ff88;
+      cursor: pointer;
+    }
+    
+    .license-badge:hover {
+      background: rgba(0, 255, 136, 0.3);
+    }
+    
+    button { 
+      margin: 5px 0; 
+      padding: 10px 15px; 
+      background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+      color: #0a0a0f;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+    }
+    
+    .event { 
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      padding: 12px; 
+      margin: 8px 0; 
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+    
+    .event h4 {
+      margin: 0 0 8px 0;
+      color: #00ff88;
+      font-size: 14px;
+    }
+    
+    .event p {
+      margin: 4px 0;
+      font-size: 12px;
+      color: #a1a1aa;
+    }
+    
+    .calendar-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    
+    .calendar-btn {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 11px;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .calendar-btn:hover {
+      background: rgba(0, 255, 136, 0.1);
+      border-color: #00ff88;
+    }
+    
+    .hidden { display: none; }
+    
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #00ff88;
+      font-size: 14px;
+    }
+    
+    .error-message {
+      background: rgba(255, 59, 48, 0.1);
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      color: #ff3b30;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    
+    .success-message {
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      color: #00ff88;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin: 10px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Activation Screen -->
+  <div id="activationScreen" class="activation-screen">
+    <div class="activation-logo">✓</div>
+    <h2>CalClik</h2>
+    <p>Privacy-first calendar automation powered by local AI</p>
+    
+    <div class="privacy-badges">
+      <span class="privacy-badge">🔒 No Data Selling</span>
+      <span class="privacy-badge">🚫 No Tracking</span>
+      <span class="privacy-badge">🤖 Local AI</span>
+    </div>
+    
+    <div class="price-box">
+      <div class="price">$0.99<span style="font-size: 16px; color: #a1a1aa;">/month</span></div>
+      <div class="price-period">or $9.99/year (save 17%)</div>
+      
+      <ul class="features-list">
+        <li>Unlimited AI event detection</li>
+        <li>All calendar integrations</li>
+        <li>Complete privacy guarantee</li>
+        <li>Priority email support</li>
+      </ul>
+    </div>
+    
+    <button class="cta-button" onclick="startTrial()">
+      🎉 Start 7-Day Free Trial
+    </button>
+    
+    <button class="cta-button link-button" onclick="toggleLicenseInput()">
+      Already subscribed? Enter License Key
+    </button>
+    
+    <div id="licenseInputSection" class="license-input-section">
+      <input 
+        type="text" 
+        id="licenseKeyInput" 
+        class="license-input" 
+        placeholder="CLIK-XXXX-XXXX-XXXX-XXXX"
+        maxlength="24"
+      >
+      <button class="cta-button" onclick="activateLicense()">
+        Activate License
+      </button>
+    </div>
+    
+    <div id="activationMessage"></div>
+    
+    <p style="font-size: 11px; color: #555; margin-top: 20px;">
+      No credit card required for trial<br>
+      <a href="https://calclik.app/pricing" target="_blank" rel="noopener noreferrer" style="color: #00ff88;">Learn more</a>
+    </p>
+  </div>
+
+  <!-- Main App Screen -->
+  <div id="mainScreen" class="main-screen">
+    <div class="header">
+      <div class="logo">✓</div>
+      <h3>CALCLiK</h3>
+      <div class="license-badge" id="licenseBadge" onclick="showLicenseInfo()">
+        Loading...
+      </div>
+    </div>
+    
+    <button id="scanBtn" onclick="scanForEvents()">
+      🔍 Scan Current Tab for Events
+    </button>
+    
+    <div id="loading" class="loading hidden">Processing with AI...</div>
+    <div id="events"></div>
+  </div>
+
+  <script src="license.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
