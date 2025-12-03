@@ -18,19 +18,24 @@ function scanForEvents() {
   console.log('Dates found:', dates);
   console.log('Times found:', times);
 
-  // Extract potential event text around dates
+  // Extract potential event text around dates - use paragraph-based extraction
   const potentialEvents = [];
-  const sentences = bodyText.split(/[.!?]+/);
+  
+  // Split by double newlines or major breaks to get event blocks
+  const blocks = bodyText.split(/\n\s*\n+/);
 
-  console.log('Total sentences:', sentences.length);
+  console.log('Total blocks:', blocks.length);
 
-  sentences.forEach(sentence => {
+  blocks.forEach(block => {
     // Create new regex instances for each test to avoid lastIndex issues
     const datePat = /\b\d{1,2}\/\d{1,2}\/\d{4}\b|\b\d{4}-\d{2}-\d{2}\b|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},?\s+\d{4}\b/i;
     const timePat = /\b\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?\b/i;
     
-    if (datePat.test(sentence) || timePat.test(sentence)) {
-      potentialEvents.push(sentence.trim());
+    // If block contains date or time, include the whole block (preserving line structure)
+    if (datePat.test(block) || timePat.test(block)) {
+      // Preserve newlines but clean up excessive spaces on each line
+      const cleanedBlock = block.split('\n').map(line => line.trim()).join('\n').trim();
+      potentialEvents.push(cleanedBlock);
     }
   });
 
