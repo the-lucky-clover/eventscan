@@ -136,7 +136,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
 
-      // Show intelligence header and stats footer
+      // Hide loading and show intelligence header and stats footer
+      loading.classList.add('hidden');
       const intelligenceHeader = document.getElementById('intelligenceHeader');
       const settingsHeader = document.getElementById('settingsHeader');
       const eventsContainer = document.getElementById('eventsContainer');

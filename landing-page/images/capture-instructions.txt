@@ -1,0 +1,14 @@
+To capture the hero screenshot:
+
+1. Open Chrome/Brave browser
+2. Load the extension from /Applications/calclik-chrome-extension
+3. Navigate to the test page: file:///Applications/calclik-chrome-extension/test-page.html
+4. Click the CalClik extension icon to open the popup
+5. Take a screenshot showing:
+   - The test page with events in the background
+   - The CalClik popup with the Tech Conference 2025 event displayed
+   - All event details clearly visible
+6. Save as: hero-screenshot.png (1200x800px recommended)
+7. Move to: /Users/pounds_1/Development/CALCLiK/landing-page/images/
+
+Or use the provided screenshot from the user's attachment!
