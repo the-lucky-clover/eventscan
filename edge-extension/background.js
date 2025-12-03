@@ -87,18 +87,25 @@ function extractEvent(text) {
   let titleText = text;
   
   // First, check for line breaks - title is typically on first line
-  const lineBreakPattern = /[\r\n]+/;
   const firstLineMatch = titleText.match(/^([^\r\n]+)/);
   if (firstLineMatch && firstLineMatch[1].trim()) {
     // Check if first line looks like a title (not too long, not starting with description words)
     const firstLine = firstLineMatch[1].trim();
-    const descriptionStarters = /^(?:The event|This|Don't miss|Come|Register|RSVP|Bring|Please|All|Location:|Time:|Date:)\b/i;
+    const descriptionStarters = /^(?:The event|This|Don't miss|Come|Register|RSVP|Bring|Please|All|Location:|Time:|Date:|Where:|When:)\b/i;
     
     if (firstLine.length < 150 && !descriptionStarters.test(firstLine)) {
+      // First line is the title - use it directly without further processing
       titleText = firstLine;
+      // Clean up and return immediately
+      event.title = titleText
+        .replace(/[,.:;!?-]+$/, '')
+        .trim()
+        .substring(0, 100);
+      return event.title ? event : null;
     }
   }
   
+  // Fallback: If first line didn't work, extract from description text
   // Remove common prefixes
   titleText = titleText.replace(/^(?:Join us for an?|Annual|Virtual|Interactive)\s+/i, '');
   
