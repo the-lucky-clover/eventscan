@@ -1,0 +1,2598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALCLiK - Smart Event Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Framer Motion -->
+  <script src="https://unpkg.com/framer-motion@11.0.8/dist/framer-motion.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Safari Extension Styles */
+    .safari-btn {
+      background: linear-gradient(135deg, #007AFF, #5AC8FA);
+      border: 2px solid rgba(0, 122, 255, 0.3);
+    }
+    .safari-btn:hover {
+      box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+    }
+    .safari-icon {
+      background: linear-gradient(135deg, #007AFF, #5AC8FA);
+    }
+    .edge-icon {
+      background: linear-gradient(135deg, #0078d4, #50e6ff);
+    }
+    .beta-info {
+      font-size: 0.9rem;
+      color: #5AC8FA;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .safari-download-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    .coming-soon-notice {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: rgba(0, 122, 255, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid #007AFF;
+    }
+    .coming-soon-notice h5 {
+      color: #007AFF;
+      margin-bottom: 0.5rem;
+    }
+    .btn-tertiary-3d-large {
+      background: linear-gradient(135deg, #FF6B35, #F7931E);
+      border: 2px solid rgba(255, 107, 53, 0.3);
+      padding: 16px 24px;
+      border-radius: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    }
+    .btn-tertiary-3d-large:hover {
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    }
+    .download-btn-3d.secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      margin-top: 0.5rem;
+    }
+    .download-btn-3d.secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Beta Badge Styling */
+    .beta-badge {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: super;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    }
+    
+    .hero-beta-badge {
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-left: 18px;
+      vertical-align: top;
+      opacity: 1;
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    }
+    
+    /* Professional Onboarding Styles */
+    .onboarding-screenshot {
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      position: relative;
+      margin: 1.5rem 0;
+      background: #1a1a2e;
+    }
+    
+    .screenshot-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    
+    .onboarding-screenshot:hover .screenshot-overlay {
+      opacity: 1;
+    }
+    
+    .step-number-overlay {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.4);
+      z-index: 10;
+    }
+    
+    .screenshot-mockup {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #2d3748, #4a5568);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .chrome-mockup {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+    }
+    
+    .safari-mockup {
+      background: linear-gradient(135deg, #007aff, #5ac8fa);
+    }
+    
+    .xcode-mockup {
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    }
+    
+    /* Enhanced Step Styling */
+    .installation-steps .step {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .installation-steps .step:hover {
+      border-color: rgba(0, 212, 255, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.1);
+    }
+    
+    .installation-steps .step::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+    }
+    
+    .installation-steps .step:hover::before {
+      width: 4px;
+    }
+    
+    /* Professional Typography */
+    .step-content h5 {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .step-content p {
+      color: #b8c4d0;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .step-content code {
+      background: rgba(0, 212, 255, 0.2);
+      color: #00d4ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', Consolas, monospace;
+      font-size: 0.9em;
+    }
+    
+    /* High Contrast Improvements */
+    .installation-steps .step-number {
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: #000;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    }
+    
+    /* Safari Benefits Grid */
+    .safari-benefits {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .safari-benefits h4 {
+      color: #007aff;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+    
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(0, 122, 255, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid #007aff;
+    }
+    
+    .benefit-item:hover {
+      background: rgba(0, 122, 255, 0.15);
+    }
+    
+    .benefit-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .benefit-content h5 {
+      color: #007aff;
+      margin: 0 0 0.25rem 0;
+      font-size: 1rem;
+    }
+    
+    .benefit-content p {
+      color: #b8c4d0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    
+    /* Enhanced Coming Soon Notice */
+    .coming-soon-notice {
+      background: rgba(0, 122, 255, 0.15);
+      border: 2px solid rgba(0, 122, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .coming-soon-notice::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #007aff, #5ac8fa);
+    }
+    
+    .coming-soon-notice h5 {
+      color: #007aff;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .coming-soon-notice p {
+      color: #b8c4d0;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* Responsive Improvements */
+    @media (max-width: 768px) {
+      .benefit-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .onboarding-screenshot {
+        margin: 1rem 0;
+      }
+      
+      .screenshot-mockup {
+        height: 150px;
+        font-size: 0.9rem;
+      }
+      
+      .step-number-overlay {
+        width: 28px;
+        height: 28px;
+        top: 12px;
+        left: 12px;
+        font-size: 1rem;
+      }
+    }
+    
+    /* Utility Classes for Dynamic Elements */
+    .hidden-elem {
+      display: none;
+    }
+    
+    .mockup-placeholder-center {
+      text-align: center;
+    }
+    
+    .mockup-icon-large {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mockup-icon-medium {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mockup-text-small {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 0.5rem;
+    }
+    
+    .mockup-code-display {
+      font-family: monospace;
+      background: rgba(0,0,0,0.3);
+      padding: 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <nav class="navbar-capsule-sticky glass-shimmer">
+    <div class="nav-container-enhanced">
+      <div class="navbar-brand-section">
+        <div class="navbar-logo-text">CALCLiK</div>
+        <span class="navbar-beta-badge">BETA</span>
+      </div>
+      <div class="logo-container-3d">
+        <div class="logo-capsule-mask">
+          <div class="logo-3d-wrapper">
+            <img src="images/calclik-logo.svg" alt="CALCLiK Logo" class="navbar-logo-enhanced" />
+            <div class="logo-3d-shadow"></div>
+            <div class="logo-3d-highlight"></div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-buttons-enhanced">
+        <button onclick="openModal('browserSelectionModal')" class="btn-download-enhanced glass-shimmer btn-shimmer" aria-label="Download CALCLiK extension">
+          <video autoplay loop muted playsinline>
+            <source src="https://www.pexels.com/download/video/6772135/" type="video/mp4">
+          </video>
+          <div class="btn-content-centered">
+            <i data-lucide="download" class="btn-icon-centered"></i>
+            <span class="btn-text-centered">Download Now</span>
+          </div>
+          <div class="btn-fill-enhanced"></div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-text hero-left-skewed">
+        <div class="hero-logo-section">
+          <div class="hero-logo">
+            <div class="hero-logo-text">CALCLiK</div>
+            <span class="hero-beta-badge">BETA</span>
+          </div>
+        </div>
+        
+        <h1 class="hero-headline">
+          <span class="gradient-text">Discover Events<br>Instantly with AI</span>
+        </h1>
+        <p class="hero-subtitle">Scan any webpage for events and add them to your calendar with AI-powered precision. No API keys required - everything runs locally in your browser.</p>
+      </div>
+      <div class="hero-mockup hero-right-skewed">
+        <img src="images/hero-screenshot.png" alt="CalClik Extension Screenshot" class="hero-screenshot-image" />
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title gradient-text">Powerful Features</h2>
+        <p class="section-subtitle">Experience the future of event discovery with cutting-edge AI technology</p>
+      </div>
+      <div class="bento-grid animate-on-scroll">
+        <div class="feature-card-3d large-card glass-shimmer">
+          <div class="card-glow"></div>
+          <div class="feature-icon-3d ai-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3>AI-Powered Smart Scanning</h3>
+          <p>Revolutionary neural network technology detects events from any webpage with 99.7% accuracy</p>
+          <div class="feature-stats">
+            <div class="stat">
+              <span class="stat-number">99.7%</span>
+              <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">&lt;0.3s</span>
+              <span class="stat-label">Response Time</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feature-card-3d">
+          <div class="card-glow"></div>
+          <div class="feature-icon-3d calendar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3>Universal Calendar Sync</h3>
+          <p>Seamlessly integrate with Google, Outlook, Apple Calendar, and more</p>
+        </div>
+        
+        <div class="feature-card-3d">
+          <div class="card-glow"></div>
+          <div class="feature-icon-3d speed-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+            </svg>
+          </div>
+          <h3>Lightning Speed</h3>
+          <p>Process thousands of events in milliseconds with our optimized engine</p>
+        </div>
+        
+        <div class="feature-card-3d wide-card">
+          <div class="card-glow"></div>
+          <div class="feature-icon-3d security-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Privacy-First Design</h3>
+          <p>Your data never leaves your device. All processing happens locally with end-to-end encryption</p>
+          <div class="privacy-indicators">
+            <div class="indicator">🔐 Local Processing</div>
+            <div class="indicator">🛡️ Zero Data Collection</div>
+            <div class="indicator">✅ GDPR Compliant</div>
+          </div>
+        </div>
+        
+        <div class="feature-card-3d">
+          <div class="card-glow"></div>
+          <div class="feature-icon-3d smart-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 12l2 2 4-4"/>
+              <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+              <path d="M3 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+              <path d="M12 21c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+              <path d="M12 3c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+            </svg>
+          </div>
+          <h3>Smart Recognition</h3>
+          <p>Advanced NLP understands context, dates, times, and locations automatically</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title gradient-text">What Users Say</h2>
+        <p class="section-subtitle">Join thousands of satisfied users who've transformed their event management</p>
+      </div>
+      <div class="testimonials-carousel animate-on-scroll">
+        <div class="testimonial-card-3d glass-shimmer">
+          <div class="card-glow"></div>
+          <div class="testimonial-header">
+            <div class="user-avatar">
+              <div class="avatar-gradient"></div>
+              <span class="avatar-initial">S</span>
+            </div>
+            <div class="user-info">
+              <h4>Sarah Chen</h4>
+              <p class="user-title">Senior Event Planner @ TechCorp</p>
+              <div class="user-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">5.0</span>
+              </div>
+            </div>
+          </div>
+          <blockquote class="testimonial-quote">
+            "CALCLiK has revolutionized our event planning workflow. The AI accuracy is mind-blowing – it catches events I would have missed manually. Saved us 15+ hours per week!"
+          </blockquote>
+          <div class="testimonial-metrics">
+            <div class="metric">
+              <span class="metric-number">15hrs</span>
+              <span class="metric-label">Saved/Week</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">99.8%</span>
+              <span class="metric-label">Accuracy</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card-3d">
+          <div class="card-glow"></div>
+          <div class="testimonial-header">
+            <div class="user-avatar">
+              <div class="avatar-gradient"></div>
+              <span class="avatar-initial">M</span>
+            </div>
+            <div class="user-info">
+              <h4>Marcus Rivera</h4>
+              <p class="user-title">Digital Marketing Director</p>
+              <div class="user-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">5.0</span>
+              </div>
+            </div>
+          </div>
+          <blockquote class="testimonial-quote">
+            "The dark mode interface is absolutely gorgeous and the 3D elements make it feel like using technology from the future. My team is obsessed!"
+          </blockquote>
+          <div class="testimonial-metrics">
+            <div class="metric">
+              <span class="metric-number">200+</span>
+              <span class="metric-label">Events/Month</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">10x</span>
+              <span class="metric-label">Faster</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card-3d">
+          <div class="card-glow"></div>
+          <div class="testimonial-header">
+            <div class="user-avatar">
+              <div class="avatar-gradient"></div>
+              <span class="avatar-initial">A</span>
+            </div>
+            <div class="user-info">
+              <h4>Alex Thompson</h4>
+              <p class="user-title">Freelance Content Creator</p>
+              <div class="user-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-text">5.0</span>
+              </div>
+            </div>
+          </div>
+          <blockquote class="testimonial-quote">
+            "Privacy-first approach sold me immediately. Knowing my data stays local while getting AI-powered results? That's the perfect balance of innovation and security."
+          </blockquote>
+          <div class="testimonial-metrics">
+            <div class="metric">
+              <span class="metric-number">100%</span>
+              <span class="metric-label">Privacy</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">0ms</span>
+              <span class="metric-label">Cloud Sync</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="statistics" class="statistics">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title gradient-text">Trusted Worldwide</h2>
+        <p class="section-subtitle">Real metrics from real users transforming their productivity</p>
+      </div>
+      <div class="stats-grid animate-on-scroll">
+        <div class="stat-card-3d">
+          <div class="card-glow"></div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div class="stat-number counter" data-target="2847392">0</div>
+          <p class="stat-label">Events Detected</p>
+          <div class="stat-trend">
+            <span class="trend-indicator">↗️ +23% this month</span>
+          </div>
+        </div>
+        
+        <div class="stat-card-3d">
+          <div class="card-glow"></div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="stat-number counter" data-target="156843">0</div>
+          <p class="stat-label">Active Users</p>
+          <div class="stat-trend">
+            <span class="trend-indicator">↗️ +47% this quarter</span>
+          </div>
+        </div>
+        
+        <div class="stat-card-3d">
+          <div class="card-glow"></div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="stat-number counter" data-target="99.7">0</div>
+          <p class="stat-label">Accuracy Rate %</p>
+          <div class="stat-trend">
+            <span class="trend-indicator">🎯 Industry Leading</span>
+          </div>
+        </div>
+        
+        <div class="stat-card-3d">
+          <div class="card-glow"></div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <div class="stat-number counter" data-target="0.27">0</div>
+          <p class="stat-label">Avg Response Time (s)</p>
+          <div class="stat-trend">
+            <span class="trend-indicator">⚡ Ultra Fast</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Section -->
+  <section id="installation" class="installation">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title gradient-text">Easy Installation</h2>
+        <p class="section-subtitle">Get CALCLiK up and running in minutes with our simple installation&nbsp;guide</p>
+      </div>
+      
+      <div class="installation-tabs animate-on-scroll">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="chrome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="21.17 8l-3.17 3.17"/>
+            </svg>
+            Chrome
+          </button>
+          <button class="tab-btn" data-tab="safari">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2l2 7h7l-5.5 4L17.5 22 12 18l-5.5 4 2-9L3 9h7l2-7z"/>
+            </svg>
+            Safari (macOS)
+          </button>
+          <button class="tab-btn" data-tab="brave">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2l3.09 6.26L22 9l-5 4.74L18.18 22 12 18.77 5.82 22 7 13.74 2 9l6.91-.74L12 2z"/>
+            </svg>
+            Brave
+          </button>
+          <button class="tab-btn" data-tab="edge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+              <path d="M12 6v12M6 12h12"/>
+            </svg>
+            Edge
+          </button>
+        </div>
+        
+        <div class="tab-content">
+          <div id="chrome-download" class="tab-pane active">
+            <div class="download-card-3d" id="chrome-onboarding">
+              <div class="card-glow"></div>
+              <div class="download-header">
+                <div class="browser-icon chrome-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="21.17 8l-3.17 3.17"/>
+                  </svg>
+                </div>
+                <div class="download-info">
+                  <h3>CALCLiK for Chrome</h3>
+                  <p>Compatible with Chrome 88+ and Chromium-based browsers</p>
+                </div>
+                <a href="calclik-chrome-extension.zip" download="calclik-chrome-extension.zip" class="download-btn-3d chrome-download-trigger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7,10 12,15 17,10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download&nbsp;Extension
+                </a>
+              </div>
+              
+              <div class="installation-steps">
+                <h4>🚀 Chrome/Brave Installation Guide</h4>
+                
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h5>📥 Download & Extract</h5>
+                    <p>Download the CALCLiK extension file and extract the ZIP to a folder on your computer</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">1</div>
+                      <div class="screenshot-mockup chrome-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-large">📁</div>
+                          <div>CALCLiK-chrome-extension.zip</div>
+                          <div class="mockup-text-small">Extract to folder</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h5>🌐 Open Chrome Extensions</h5>
+                    <p>Navigate to <code>chrome://extensions/</code> in your Chrome or Brave browser</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">2</div>
+                      <div class="screenshot-mockup chrome-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🔗</div>
+                          <div class="mockup-code-display">chrome://extensions/</div>
+                          <div class="mockup-text-small">Address bar navigation</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h5>🔧 Enable Developer Mode</h5>
+                    <p>Toggle the "Developer mode" switch in the top right corner of the extensions page</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">3</div>
+                      <div class="screenshot-mockup chrome-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">⚙️</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span>Developer mode</span>
+                            <div style="width: 40px; height: 20px; background: #00d4ff; border-radius: 10px; position: relative;">
+                              <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                            </div>
+                          </div>
+                          <div class="mockup-text-small">Enable toggle switch</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h5>📂 Load Extension</h5>
+                    <p>Click "Load unpacked" and select the extracted CALCLiK folder from step 1</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">4</div>
+                      <div class="screenshot-mockup chrome-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">📂</div>
+                          <div style="background: rgba(0,212,255,0.2); padding: 8px 16px; border-radius: 6px; border: 2px solid #00d4ff;">Load unpacked</div>
+                          <div class="mockup-text-small">Select CALCLiK folder</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h5>🎉 Start Scanning!</h5>
+                    <p>Click the CALCLiK icon in your browser toolbar to start finding events on any webpage</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">5</div>
+                      <div class="screenshot-mockup chrome-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🎯</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #00d4ff, #0099cc); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📅</div>
+                            <span>CALCLiK Extension Active</span>
+                          </div>
+                          <div class="mockup-text-small">Ready to scan events!</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="safari-download" class="tab-pane">
+            <div class="download-card-3d" id="safari-onboarding">
+              <div class="card-glow"></div>
+              <div class="download-header">
+                <div class="browser-icon safari-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2l2 7h7l-5.5 4L17.5 22 12 18l-5.5 4 2-9L3 9h7l2-7z"/>
+                  </svg>
+                </div>
+                <div class="download-info">
+                  <h3>CALCLiK for Safari (macOS)</h3>
+                  <p>Native macOS Safari Extension - Coming Soon to Mac App Store</p>
+                </div>
+                <div class="safari-download-options">
+                  <a href="CALCLiK-safari-extension.zip" download="CALCLiK-safari-extension.zip" class="download-btn-3d primary safari-download-trigger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7,10 12,15 17,10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Beta&nbsp;Version
+                  </a>
+                  <a href="mailto:support@CALCLiK.com?subject=Safari%20Extension%20Beta%20Feedback" class="download-btn-3d secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Send Feedback
+                  </a>
+                  <p class="beta-info">🚀 Beta version - requires Xcode to build and install</p>
+                </div>
+              </div>
+              
+              <div class="installation-steps">
+                <h4>🍎 Safari Extension Installation (Beta)</h4>
+                
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h5>📥 Download Beta Package</h5>
+                    <p>Download the Safari extension source code and extract it to your Mac</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">1</div>
+                      <div class="screenshot-mockup safari-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-large">📦</div>
+                          <div>CALCLiK-safari-extension.zip</div>
+                          <div class="mockup-text-small">Xcode project included</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h5>🛠️ Open in Xcode</h5>
+                    <p>Launch Xcode and open the <code>CALCLiK Safari.xcodeproj</code> project file</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">2</div>
+                      <div class="screenshot-mockup xcode-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">⚒️</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <div style="width: 24px; height: 24px; background: #007aff; border-radius: 4px;"></div>
+                            <span>Xcode Project</span>
+                          </div>
+                          <div class="mockup-text-small">Double-click to open</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h5>🔨 Build & Run</h5>
+                    <p>Select your Mac as the destination and click the Run button (⌘+R) to build the app</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">3</div>
+                      <div class="screenshot-mockup xcode-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">▶️</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                            <div style="background: rgba(0,212,255,0.2); padding: 6px 12px; border-radius: 4px;">▶ Run</div>
+                            <span style="opacity: 0.6;">or ⌘+R</span>
+                          </div>
+                          <div class="mockup-text-small">Build and install app</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h5>🔐 Enable Extension</h5>
+                    <p>Open Safari → Preferences → Extensions and enable the CALCLiK extension</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">4</div>
+                      <div class="screenshot-mockup safari-mockup">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🔧</div>
+                          <div>Safari → Preferences → Extensions</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px;">
+                            <span>CALCLiK</span>
+                            <div style="width: 32px; height: 16px; background: #00d4ff; border-radius: 8px; position: relative;">
+                              <div style="width: 12px; height: 12px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="safari-benefits">
+                  <h4>✨ Safari Extension Benefits</h4>
+                  <div class="benefit-grid">
+                    <div class="benefit-item">
+                      <div class="benefit-icon">🔒</div>
+                      <div class="benefit-content">
+                        <h5>Native Security</h5>
+                        <p>macOS privacy & security integration</p>
+                      </div>
+                    </div>
+                    <div class="benefit-item">
+                      <div class="benefit-icon">⚡</div>
+                      <div class="benefit-content">
+                        <h5>Enhanced Performance</h5>
+                        <p>Safari Web Extensions API optimization</p>
+                      </div>
+                    </div>
+                    <div class="benefit-item">
+                      <div class="benefit-icon">🎯</div>
+                      <div class="benefit-content">
+                        <h5>Native Integration</h5>
+                        <p>Seamless macOS ecosystem experience</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="coming-soon-notice">
+                  <h5>🚀 Coming to Mac App Store</h5>
+                  <p>We're working on App Store approval. This beta requires Xcode for installation, but the final version will be a simple one-click install from the Mac App Store.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="brave-download" class="tab-pane">
+            <div class="download-card-3d">
+              <div class="card-glow"></div>
+              <div class="download-header">
+                <div class="browser-icon brave-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9l-5 4.74L18.18 22 12 18.77 5.82 22 7 13.74 2 9l6.91-.74L12 2z"/>
+                  </svg>
+                </div>
+                <div class="download-info">
+                  <h3>CALCLiK for Brave</h3>
+                  <p>Compatible with Brave Browser (Chromium-based)</p>
+                </div>
+                <a href="calclik-chrome-extension.zip" download="calclik-chrome-extension.zip" class="download-btn-3d brave-download-trigger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7,10 12,15 17,10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download&nbsp;Extension
+                </a>
+              </div>
+              
+              <div class="installation-steps">
+                <h4>🦁 Brave Browser Installation Guide</h4>
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h5>📥 Download & Extract</h5>
+                    <p>Same CALCLiK extension works perfectly with Brave's Chromium base</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">1</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-large">🦁</div>
+                          <div>CALCLiK-chrome-extension.zip</div>
+                          <div class="mockup-text-small">Compatible with Brave</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h5>🔧 Open Brave Extensions</h5>
+                    <p>Navigate to <code>brave://extensions/</code> in your Brave browser</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">2</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🛡️</div>
+                          <div class="mockup-code-display">brave://extensions/</div>
+                          <div class="mockup-text-small">Brave extensions page</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h5>⚡ Enhanced Privacy Processing</h5>
+                    <p>Follow the same Developer Mode steps - Brave's built-in shields enhance CALCLiK's privacy</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">3</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🛡️</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                            <span>Brave Shields</span>
+                            <span style="background: rgba(0,0,0,0.2); padding: 4px 8px; border-radius: 4px;">+ CALCLiK</span>
+                            <span>= 🔒</span>
+                          </div>
+                          <div class="mockup-text-small">Ultimate privacy protection</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="brave-features">
+                <h4>🛡️ Why CALCLiK + Brave = Perfect Match</h4>
+                <div class="benefit-grid">
+                  <div class="benefit-item">
+                    <div class="benefit-icon">🚫</div>
+                    <div class="benefit-content">
+                      <h5>Ad-Free Processing</h5>
+                      <p>Built-in ad blocking enhances AI performance</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-content">
+                      <h5>Double Privacy</h5>
+                      <p>Brave Shields + Local AI = Zero tracking</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-content">
+                      <h5>Faster Scanning</h5>
+                      <p>Reduced page clutter improves event detection</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="edge-download" class="tab-pane">
+            <div class="download-card-3d">
+              <div class="card-glow"></div>
+              <div class="download-header">
+                <div class="browser-icon edge-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                    <path d="M12 6v12M6 12h12"/>
+                  </svg>
+                </div>
+                <div class="download-info">
+                  <h3>CALCLiK for Microsoft Edge</h3>
+                  <p>Compatible with Microsoft Edge (Chromium-based)</p>
+                </div>
+                <a href="calclik-edge-extension.zip" download="calclik-edge-extension.zip" class="download-btn-3d edge-download-trigger">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7,10 12,15 17,10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download&nbsp;Extension
+                </a>
+              </div>
+              
+              <div class="installation-steps">
+                <h4>🌊 Microsoft Edge Installation Guide</h4>
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h5>📥 Download & Extract</h5>
+                    <p>Download the CALCLiK extension file and extract the ZIP to a folder on your computer</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">1</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #0078d4, #50e6ff);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-large">📁</div>
+                          <div>CALCLiK-edge-extension.zip</div>
+                          <div class="mockup-text-small">Extract to folder</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h5>🌐 Open Edge Extensions</h5>
+                    <p>Navigate to <code>edge://extensions/</code> in your Microsoft Edge browser</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">2</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #0078d4, #50e6ff);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🔗</div>
+                          <div class="mockup-code-display">edge://extensions/</div>
+                          <div class="mockup-text-small">Address bar navigation</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h5>⚙️ Enable Developer Mode</h5>
+                    <p>Toggle the Developer mode switch in the bottom-left corner of the extensions page</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">3</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #0078d4, #50e6ff);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">⚙️</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span>Developer mode</span>
+                            <div style="width: 40px; height: 20px; background: #0078d4; border-radius: 10px; position: relative;">
+                              <div style="width: 16px; height: 16px; background: white; border-radius: 50%; position: absolute; right: 2px; top: 2px;"></div>
+                            </div>
+                          </div>
+                          <div class="mockup-text-small">Enable toggle switch</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h5>📂 Load Unpacked Extension</h5>
+                    <p>Click "Load unpacked" and select the extracted CALCLiK folder</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">4</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #0078d4, #50e6ff);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">📂</div>
+                          <div style="background: rgba(0,120,212,0.2); padding: 8px 16px; border-radius: 6px; border: 2px solid #0078d4;">Load unpacked</div>
+                          <div class="mockup-text-small">Select CALCLiK folder</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="step">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h5>🎯 Start Using CALCLiK</h5>
+                    <p>Click the CALCLiK icon in your browser toolbar to start finding events on any webpage</p>
+                    <div class="onboarding-screenshot">
+                      <div class="step-number-overlay">5</div>
+                      <div class="screenshot-mockup" style="background: linear-gradient(135deg, #0078d4, #50e6ff);">
+                        <div class="mockup-placeholder-center">
+                          <div class="mockup-icon-medium">🎯</div>
+                          <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #0078d4, #50e6ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">📅</div>
+                            <span>CALCLiK Extension Active</span>
+                          </div>
+                          <div class="mockup-text-small">Ready to scan events!</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="edge-features">
+                <h4>🌊 Why CALCLiK + Edge = Productivity Powerhouse</h4>
+                <div class="benefit-grid">
+                  <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <div class="benefit-content">
+                      <h5>Cross-Device Sync</h5>
+                      <p>Seamless sync across Windows, macOS, and mobile</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                      <h5>Chromium Performance</h5>
+                      <p>Fast event detection with Chromium engine</p>
+                    </div>
+                  </div>
+                  <div class="benefit-item">
+                    <div class="benefit-icon">🏢</div>
+                    <div class="benefit-content">
+                      <h5>Enterprise Ready</h5>
+                      <p>Perfect for business users and Office 365 integration</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="features-highlight animate-on-scroll">
+        <div class="highlight-card">
+          <div class="highlight-icon">🔒</div>
+          <h4>100% Local Processing</h4>
+          <p>Your data never leaves your browser. All AI processing happens locally using advanced machine learning models.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">⚡</div>
+          <h4>No API Keys Required</h4>
+          <p>Unlike other tools, CALCLiK works out of the box. No registration, no API keys, no external dependencies.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌐</div>
+          <h4>Works Offline</h4>
+          <p>Once installed, CALCLiK works even without an internet connection. Perfect for privacy-conscious users.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Analytics Dashboard -->
+  <section class="analytics-section" id="analytics">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title gradient-text">Live Usage Analytics</h2>
+        <p class="section-subtitle">Real-time insights into CALCLiK usage and performance metrics</p>
+        <div class="admin-note">
+          <i data-lucide="lock" class="admin-icon"></i>
+          <span>Database-driven analytics • Admin dashboard available</span>
+        </div>
+      </div>
+      <div class="analytics-grid">
+        <div class="analytics-card animate-on-scroll glass-shimmer">
+          <div class="stat-icon">📊</div>
+          <div class="stat-number" id="totalDownloads">0</div>
+          <div class="stat-label">Total Downloads</div>
+          <div class="stat-change positive">↗ Live updates</div>
+        </div>
+        <div class="analytics-card animate-on-scroll">
+          <div class="stat-icon">🔍</div>
+          <div class="stat-number" id="eventsScanned">0</div>
+          <div class="stat-label">Events Scanned</div>
+          <div class="stat-change positive">↗ Last 24h</div>
+        </div>
+        <div class="analytics-card animate-on-scroll">
+          <div class="stat-icon">📅</div>
+          <div class="stat-number" id="calendarAdds">0</div>
+          <div class="stat-label">Calendar Events Added</div>
+          <div class="stat-change positive">↗ All time</div>
+        </div>
+        <div class="analytics-card animate-on-scroll">
+          <div class="stat-icon">🌍</div>
+          <div class="stat-number" id="activeUsers">0</div>
+          <div class="stat-label">Active Users</div>
+          <div class="stat-change positive">↗ This week</div>
+        </div>
+        <div class="analytics-card animate-on-scroll">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-number" id="avgScanTime">0ms</div>
+          <div class="stat-label">Avg Scan Time</div>
+          <div class="stat-change neutral">→ AI Performance</div>
+        </div>
+        <div class="analytics-card animate-on-scroll">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-number" id="accuracyRate">0%</div>
+          <div class="stat-label">Accuracy Rate</div>
+          <div class="stat-change positive">↗ AI Quality</div>
+        </div>
+      </div>
+      
+      <!-- Privacy Notice -->
+      <div class="privacy-notice animate-on-scroll">
+        <div class="privacy-icon">🔒</div>
+        <div class="privacy-text">
+          <h4>Privacy-First Analytics</h4>
+          <p>All statistics are collected anonymously. No personal data, no tracking cookies, no user identification. We only collect aggregate usage metrics to improve CALCLiK.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <i data-lucide="sparkles" class="footer-logo-icon"></i>
+            <span class="footer-logo-text animated-gradient-text">CALCLiK</span>
+          </div>
+          <p class="footer-tagline">AI-powered event discovery for productivity enthusiasts</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#url-scanner">Try Now</a></li>
+              <li><a href="https://github.com/the-lucky-clover/calclik" target="_blank" rel="noopener noreferrer">Open Source</a></li>
+              <li><a href="/test-events">Test Events</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Download</h4>
+            <ul>
+              <li><a href="#chrome-onboarding">Chrome Extension</a></li>
+              <li><a href="#safari-onboarding">Safari Extension</a></li>
+              <li><a href="#chrome-onboarding">Brave Browser</a></li>
+              <li><a href="https://github.com/the-lucky-clover/calclik/releases" target="_blank" rel="noopener noreferrer">All Releases</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="https://github.com/the-lucky-clover/calclik/issues" target="_blank" rel="noopener noreferrer">Report Issues</a></li>
+              <li><a href="https://github.com/the-lucky-clover/calclik/discussions" target="_blank" rel="noopener noreferrer">Community</a></li>
+              <li><a href="mailto:support@calclik.app">Contact Support</a></li>
+              <li><a href="https://github.com/the-lucky-clover/calclik/wiki" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#" onclick="openModal('privacyModal'); return false;">Privacy Policy</a></li>
+              <li><a href="#" onclick="openModal('termsModal'); return false;">Terms of Service</a></li>
+              <li><a href="mailto:legal@calclik.app">Legal Inquiries</a></li>
+              <li><a href="https://github.com/the-lucky-clover/calclik/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <p>&copy; 2025 CALCLiK. Made with 💚 for productivity enthusiasts.</p>
+        </div>
+        <div class="footer-social">
+          <a href="https://github.com/the-lucky-clover/calclik" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visit CALCLiK on GitHub">
+            <i data-lucide="github"></i>
+          </a>
+          <a href="https://twitter.com/calclik_app" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow CALCLiK on Twitter">
+            <i data-lucide="twitter"></i>
+          </a>
+          <a href="mailto:hello@calclik.app" class="social-link" aria-label="Email CALCLiK support">
+            <i data-lucide="mail"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Browser Selection Modal -->
+  <div id="browserSelectionModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container browser-selection-modal">
+      <div class="modal-header">
+        <h2>Choose Your Browser</h2>
+        <button class="modal-close" onclick="closeModal('browserSelectionModal')" aria-label="Close browser selection modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-content">
+        <p class="browser-selection-intro">Select your browser to download the CALCLiK extension</p>
+        <div class="browser-grid">
+          <a href="calclik-chrome-extension.zip" download="calclik-chrome-extension.zip" class="browser-card" data-browser="chrome">
+            <div class="browser-icon">
+              <i data-lucide="chrome"></i>
+            </div>
+            <h3>Google Chrome</h3>
+            <p>For Chrome browser</p>
+            <span class="browser-badge">Most Popular</span>
+          </a>
+          
+          <a href="calclik-chrome-extension.zip" download="calclik-chrome-extension.zip" class="browser-card" data-browser="brave">
+            <div class="browser-icon">
+              <i data-lucide="shield"></i>
+            </div>
+            <h3>Brave</h3>
+            <p>Privacy-focused browser</p>
+            <span class="browser-badge">Recommended</span>
+          </a>
+          
+          <a href="CALCLiK-safari-extension.zip" download="CALCLiK-safari-extension.zip" class="browser-card" data-browser="safari">
+            <div class="browser-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 30C8.268 30 2 23.732 2 16S8.268 2 16 2s14 6.268 14 14-6.268 14-14 14zm5-14l-7-7-5 5 7 7 5-5z"/></svg>
+            </div>
+            <h3>Safari</h3>
+            <p>For macOS only</p>
+            <span class="browser-badge">macOS</span>
+          </a>
+          
+          <a href="calclik-firefox-extension.xpi" download="calclik-firefox-extension.xpi" class="browser-card" data-browser="firefox">
+            <div class="browser-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0a16 16 0 100 32 16 16 0 000-32z"/></svg>
+            </div>
+            <h3>Firefox</h3>
+            <p>For Firefox browser</p>
+            <span class="browser-badge">New</span>
+          </a>
+          
+          <a href="calclik-edge-extension.zip" download="calclik-edge-extension.zip" class="browser-card" data-browser="edge">
+            <div class="browser-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2a14 14 0 100 28 14 14 0 000-28z"/></svg>
+            </div>
+            <h3>Microsoft Edge</h3>
+            <p>For Edge browser</p>
+            <span class="browser-badge">Compatible</span>
+          </a>
+          
+          <div class="browser-card browser-card-linux" data-browser="linux">
+            <div class="browser-icon">
+              <i data-lucide="monitor"></i>
+            </div>
+            <h3>Linux</h3>
+            <p>All Chromium browsers supported</p>
+            <span class="browser-badge">Cross-platform</span>
+          </div>
+        </div>
+        
+        <div class="browser-selection-note">
+          <i data-lucide="info"></i>
+          <p>Not sure which to choose? Chrome and Brave extensions work on most Chromium-based browsers including Opera, Vivaldi, and Edge.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacyModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Privacy Policy</h2>
+        <button class="modal-close" onclick="closeModal('privacyModal')">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-content">
+        <div class="policy-section">
+          <h3>1. Information We Collect</h3>
+          <div class="policy-subsection">
+            <h4>1.1 Local Processing Only</h4>
+            <p>CALCLiK is designed with privacy-first principles. All AI processing happens locally in your browser using Transformers.js. We do not collect, store, or transmit any personal data to our servers.</p>
+            
+            <h4>1.2 Extension Data</h4>
+            <p>The browser extension only accesses webpage content you explicitly scan. This data is processed locally and never leaves your device.</p>
+            
+            <h4>1.3 Analytics (Optional)</h4>
+            <p>We may collect anonymous usage statistics through Google Analytics to improve the service. This includes:</p>
+            <ul>
+              <li>Extension installation and usage counts</li>
+              <li>Feature usage patterns (anonymized)</li>
+              <li>Error reports (no personal data)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>2. How We Use Information</h3>
+          <div class="policy-subsection">
+            <h4>2.1 Service Provision</h4>
+            <p>We use information solely to:</p>
+            <ul>
+              <li>Provide event detection and calendar integration</li>
+              <li>Improve AI accuracy and performance</li>
+              <li>Ensure compatibility across browsers</li>
+            </ul>
+            
+            <h4>2.2 No Third-Party Sharing</h4>
+            <p>We do not sell, rent, or share any user data with third parties, except for:</p>
+            <ul>
+              <li>Calendar platforms you choose to integrate with</li>
+              <li>Legal requirements (if applicable)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>3. Data Security</h3>
+          <div class="policy-subsection">
+            <h4>3.1 Local Processing</h4>
+            <p>All AI processing occurs locally in your browser, ensuring your data never leaves your device during event extraction.</p>
+            
+            <h4>3.2 Calendar Integration</h4>
+            <p>When you choose to add events to external calendars, you are redirected to those services' official interfaces. We do not store or intercept this data.</p>
+            
+            <h4>3.3 Browser Storage</h4>
+            <p>The extension may store preferences locally in your browser using Chrome's storage API. This data remains on your device.</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>4. Your Rights</h3>
+          <div class="policy-subsection">
+            <h4>4.1 Data Control</h4>
+            <p>Since we don't collect personal data, you maintain full control over your information:</p>
+            <ul>
+              <li>Uninstall the extension to remove all local data</li>
+              <li>Clear browser data to reset preferences</li>
+              <li>Disable analytics in extension settings</li>
+            </ul>
+            
+            <h4>4.2 GDPR Compliance</h4>
+            <p>Our privacy-first design ensures GDPR compliance by default, as we process minimal data locally.</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>5. Changes to Privacy Policy</h3>
+          <p>We may update this privacy policy occasionally. Changes will be posted on this page with an updated effective date. Continued use of CALCLiK constitutes acceptance of any changes.</p>
+          
+          <div class="policy-meta">
+            <p><strong>Effective Date:</strong> November 16, 2025</p>
+            <p><strong>Last Updated:</strong> November 16, 2025</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>6. Contact Information</h3>
+          <p>For privacy-related questions or concerns, please contact us at:</p>
+          <div class="contact-info">
+            <p><strong>Email:</strong> privacy@calclik.app</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/the-lucky-clover/calclik" target="_blank" rel="noopener noreferrer">github.com/the-lucky-clover/calclik</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div id="termsModal" class="modal-overlay" style="display: none;">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Terms of Service</h2>
+        <button class="modal-close" onclick="closeModal('termsModal')">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-content">
+        <div class="policy-section">
+          <h3>1. Acceptance of Terms</h3>
+          <p>By downloading, installing, or using CALCLiK ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use the Service.</p>
+        </div>
+
+        <div class="policy-section">
+          <h3>2. Description of Service</h3>
+          <div class="policy-subsection">
+            <h4>2.1 Core Functionality</h4>
+            <p>CALCLiK is a browser extension that:</p>
+            <ul>
+              <li>Scans web pages for event information using AI technology</li>
+              <li>Extracts dates, times, locations, and descriptions</li>
+              <li>Facilitates adding events to various calendar platforms</li>
+              <li>Operates primarily through local processing</li>
+            </ul>
+            
+            <h4>2.2 Third-Party Integration</h4>
+            <p>The Service integrates with external calendar platforms (Google Calendar, Outlook, Apple Calendar). Use of these platforms is subject to their respective terms of service.</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>3. User Responsibilities</h3>
+          <div class="policy-subsection">
+            <h4>3.1 Appropriate Use</h4>
+            <p>You agree to use CALCLiK only for:</p>
+            <ul>
+              <li>Legitimate event detection and calendar management</li>
+              <li>Personal or business productivity purposes</li>
+              <li>Compliance with applicable laws and regulations</li>
+            </ul>
+            
+            <h4>3.2 Prohibited Activities</h4>
+            <p>You agree not to:</p>
+            <ul>
+              <li>Use the Service to violate any laws or regulations</li>
+              <li>Attempt to reverse engineer or modify the extension</li>
+              <li>Use the Service for automated scraping at scale</li>
+              <li>Interfere with the Service's operation or security</li>
+              <li>Extract copyrighted content without permission</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>4. Intellectual Property</h3>
+          <div class="policy-subsection">
+            <h4>4.1 Our Rights</h4>
+            <p>CALCLiK, including its code, design, and AI models, is protected by intellectual property laws. We retain all rights not expressly granted to users.</p>
+            
+            <h4>4.2 User Content</h4>
+            <p>You retain ownership of content you process through CALCLiK. We claim no rights to your calendar events or extracted information.</p>
+            
+            <h4>4.3 Open Source Components</h4>
+            <p>CALCLiK uses open source libraries (Transformers.js, Lucide Icons) subject to their respective licenses.</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>5. Disclaimers and Limitations</h3>
+          <div class="policy-subsection">
+            <h4>5.1 Service Availability</h4>
+            <p>We provide CALCLiK "as is" without warranties of any kind. We do not guarantee:</p>
+            <ul>
+              <li>100% accuracy in event detection</li>
+              <li>Compatibility with all websites or browsers</li>
+              <li>Uninterrupted service availability</li>
+              <li>Error-free operation</li>
+            </ul>
+            
+            <h4>5.2 Limitation of Liability</h4>
+            <p>To the maximum extent permitted by law, we shall not be liable for:</p>
+            <ul>
+              <li>Indirect, incidental, or consequential damages</li>
+              <li>Loss of data, profits, or business opportunities</li>
+              <li>Damages exceeding $100 USD</li>
+              <li>Issues arising from third-party calendar services</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>6. Privacy and Data Protection</h3>
+          <p>Your privacy is important to us. Our data practices are governed by our Privacy Policy, which is incorporated into these Terms by reference.</p>
+        </div>
+
+        <div class="policy-section">
+          <h3>7. Updates and Modifications</h3>
+          <div class="policy-subsection">
+            <h4>7.1 Service Updates</h4>
+            <p>We may update CALCLiK to improve functionality, security, or compatibility. Updates may be automatic or require user action.</p>
+            
+            <h4>7.2 Terms Changes</h4>
+            <p>We reserve the right to modify these Terms at any time. Material changes will be communicated through the extension or our website. Continued use constitutes acceptance of updated Terms.</p>
+          </div>
+        </div>
+
+        <div class="policy-section">
+          <h3>8. Termination</h3>
+          <p>You may stop using CALCLiK at any time by uninstalling the extension. We may discontinue the Service with reasonable notice. Upon termination, these Terms cease to apply, except for sections that survive by their nature.</p>
+        </div>
+
+        <div class="policy-section">
+          <h3>9. Governing Law</h3>
+          <p>These Terms are governed by the laws of California, United States, without regard to conflict of law principles. Any disputes shall be resolved in the courts of California.</p>
+        </div>
+
+        <div class="policy-section">
+          <h3>10. Contact Information</h3>
+          <p>For questions about these Terms, please contact:</p>
+          <div class="contact-info">
+            <p><strong>Email:</strong> legal@calclik.app</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/the-lucky-clover/calclik/issues" target="_blank" rel="noopener noreferrer">github.com/the-lucky-clover/calclik</a></p>
+          </div>
+          
+          <div class="policy-meta">
+            <p><strong>Effective Date:</strong> November 16, 2025</p>
+            <p><strong>Last Updated:</strong> November 16, 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fab-container">
+    <button class="fab-button" id="fabButton">
+      <svg class="fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="21 21l-4.35-4.35"/>
+      </svg>
+      <span class="fab-tooltip">Start Scanning Now</span>
+    </button>
+  </div>
+
+  <script>
+    // Enhanced Onboarding and Download Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab functionality for installation sections
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const tabName = this.getAttribute('data-tab');
+          
+          // Remove active class from all buttons and panes
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabPanes.forEach(pane => pane.classList.remove('active'));
+          
+          // Add active class to clicked button and corresponding pane
+          this.classList.add('active');
+          document.getElementById(tabName + '-download').classList.add('active');
+        });
+      });
+      
+      // Smooth scrolling for hero buttons
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            // First, switch to the appropriate tab
+            if (targetId === 'chrome-onboarding') {
+              document.querySelector('[data-tab="chrome"]').click();
+            } else if (targetId === 'safari-onboarding') {
+              document.querySelector('[data-tab="safari"]').click();
+            }
+            
+            // Then scroll to the installation section
+            document.getElementById('installation').scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Post-download onboarding popup
+      let downloadTriggered = false;
+      
+      document.querySelectorAll('.chrome-download-trigger, .brave-download-trigger').forEach(button => {
+        button.addEventListener('click', function() {
+          if (!downloadTriggered) {
+            downloadTriggered = true;
+            
+            // Show onboarding modal after short delay
+            setTimeout(() => {
+              showOnboardingModal('chrome');
+            }, 2000);
+          }
+        });
+      });
+      
+      document.querySelectorAll('.edge-download-trigger').forEach(button => {
+        button.addEventListener('click', function() {
+          if (!downloadTriggered) {
+            downloadTriggered = true;
+            
+            // Show onboarding modal after short delay
+            setTimeout(() => {
+              showOnboardingModal('edge');
+            }, 2000);
+          }
+        });
+      });
+      
+      document.querySelectorAll('.safari-download-trigger').forEach(button => {
+        button.addEventListener('click', function() {
+          if (!downloadTriggered) {
+            downloadTriggered = true;
+            
+            // Show onboarding modal after short delay
+            setTimeout(() => {
+              showOnboardingModal('safari');
+            }, 2000);
+          }
+        });
+      });
+      
+      function showOnboardingModal(browserType) {
+        const modal = createOnboardingModal(browserType);
+        document.body.appendChild(modal);
+        modal.classList.add('show');
+        
+        // Close modal functionality
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal || e.target.classList.contains('close-modal')) {
+            modal.classList.remove('show');
+            setTimeout(() => modal.remove(), 300);
+          }
+        });
+      }
+      
+      function createOnboardingModal(browserType) {
+        const modal = document.createElement('div');
+        modal.className = 'onboarding-modal';
+        
+        const browserName = browserType === 'chrome' ? 'Chrome/Brave' : 'Safari';
+        const steps = browserType === 'chrome' ? getChromeSteps() : getSafariSteps();
+        
+        modal.innerHTML = `
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>🎉 Download Started!</h3>
+              <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Your CALCLiK extension for ${browserName} is downloading. Here's what to do next:</p>
+              <div class="onboarding-steps">
+                ${steps.map((step, index) => `
+                  <div class="onboarding-step">
+                    <div class="step-number">${index + 1}</div>
+                    <div class="step-text">
+                      <strong>${step.title}</strong>
+                      <p>${step.description}</p>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="modal-actions">
+                <button class="btn-primary-3d close-modal">Got it!</button>
+                <a href="#installation" class="btn-secondary-3d close-modal">View Full Guide</a>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        return modal;
+      }
+      
+      function getChromeSteps() {
+        return [
+          { title: "Extract the ZIP file", description: "Find the downloaded file and extract it to a folder" },
+          { title: "Open Chrome Extensions", description: "Go to chrome://extensions/ in your browser" },
+          { title: "Enable Developer Mode", description: "Toggle the switch in the top right" },
+          { title: "Load the Extension", description: 'Click "Load unpacked" and select the extracted folder' }
+        ];
+      }
+      
+      function getSafariSteps() {
+        return [
+          { title: "Install from Mac App Store", description: "Safari extension will be available soon on the App Store" },
+          { title: "Request Beta Access", description: "Email us for early access to the Safari extension" },
+          { title: "Enable in Safari", description: "Go to Safari > Preferences > Extensions to enable CALCLiK" }
+        ];
+      }
+    });
+  </script>
+  
+  <style>
+    /* Onboarding Modal Styles */
+    .onboarding-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .onboarding-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: #1a1a2e;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid #16213e;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .modal-header h3 {
+      color: #00d4ff;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .close-modal:hover {
+      color: #fff;
+    }
+    
+    .modal-body p {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+    
+    .onboarding-step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid #00d4ff;
+    }
+    
+    .onboarding-step .step-number {
+      background: #00d4ff;
+      color: #000;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .step-text strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    
+    .step-text p {
+      margin: 0;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    
+    .btn-primary-3d, .btn-secondary-3d {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary-3d {
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: #000;
+    }
+    
+    .btn-secondary-3d {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-primary-3d:hover, .btn-secondary-3d:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: rgba(0, 0, 0, 0.8);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4rem 0 2rem;
+      margin-top: 6rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      max-width: 350px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--primary-color);
+    }
+
+    .footer-logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00d4ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-tagline {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-section h4 {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 0 1.25rem 0;
+      position: relative;
+    }
+
+    .footer-section h4:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 1px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-section ul li a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-copyright p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .social-link:hover {
+      background: var(--primary-color);
+      color: #000;
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .social-link i {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: rgba(20, 20, 20, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay.show .modal-container {
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 2rem 1rem 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #00d4ff, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 0, 0, 0.2);
+      color: #ff4444;
+    }
+
+    .modal-close i {
+      width: 20px;
+      height: 20px;
+    }
+
+    .modal-content {
+      padding: 2rem;
+      max-height: calc(90vh - 120px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
+    }
+
+    /* Browser Selection Modal Styles */
+    .browser-selection-modal .modal-container {
+      max-width: 900px;
+    }
+
+    .browser-selection-intro {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .browser-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .browser-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .browser-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+      opacity: 0;
+    }
+
+    .browser-card:hover::before {
+      opacity: 1;
+    }
+
+    .browser-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .browser-card-linux {
+      cursor: default;
+      opacity: 0.8;
+    }
+
+    .browser-card-linux:hover {
+      transform: none;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .browser-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 255, 136, 0.2));
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .browser-icon svg,
+    .browser-icon i {
+      width: 32px;
+      height: 32px;
+      color: var(--primary-color);
+    }
+
+    .browser-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .browser-card p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin: 0 0 1rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .browser-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #00ff88, #00d4ff);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .browser-selection-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .browser-selection-note i {
+      color: var(--primary-color);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .browser-selection-note p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .browser-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+
+      .browser-card {
+        padding: 1.5rem 1rem;
+      }
+
+      .browser-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .browser-icon svg,
+      .browser-icon i {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    .policy-section {
+      margin-bottom: 2rem;
+    }
+
+    .policy-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section h3 {
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+    }
+
+    .policy-subsection h4 {
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 1.5rem 0 0.75rem 0;
+    }
+
+    .policy-section p, .policy-subsection p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+    }
+
+    .policy-section ul, .policy-subsection ul {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin: 0 0 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .policy-section ul li, .policy-subsection ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .policy-meta {
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .policy-meta p {
+      margin: 0.25rem 0;
+      font-size: 0.9rem;
+    }
+
+    .contact-info {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.25rem 0;
+      font-size: 0.9rem;
+    }
+
+    .contact-info a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .modal-container {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+      }
+
+      .modal-header {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+        max-height: calc(100vh - 140px);
+      }
+
+      .modal-header h2 {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-links {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    }
+  </style>
+  
+  <script src="script.js"></script>
+</body>
+</html>
