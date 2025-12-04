@@ -7,12 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles-new.css">
+  <link rel="stylesheet" href="styles.css">
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
+  <!-- Cyberpunk Animated Background -->
+  <div class="cyber-background">
+    <div class="grid-lines"></div>
+    <div class="neon-particles"></div>
+    <div class="floating-orbs"></div>
+  </div>
   <!-- Sticky Glassmorphism Navigation -->
   <nav class="navbar">
     <div class="nav-container">
@@ -46,15 +52,14 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="hero-title">
-          Transform Any Webpage Into<br>
-          <span class="gradient-text">Calendar Events Instantly</span>
+      <div class="hero-content" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200" data-aos-easing="ease-out-cubic">
+        <h1 class="hero-title cyber-glitch">
+          Transform Any Webpage Into Calendar Events <span class="gradient-text neon-glow">Instantly</span>
         </h1>
-        <p class="hero-subtitle">
-          AI-powered event detection that scans, extracts, and organizes events from any website directly to your calendar. No manual entry. No missed events. Just seamless automation.
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+          Powered by AI to automatically detect and extract events from any website. One click, infinite possibilities.
         </p>
-        <div class="hero-cta">
+        <div class="hero-cta" data-aos="fade-up" data-aos-delay="600">
           <button class="btn-primary btn-large">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -98,14 +103,14 @@
       </div>
       
       <div class="bento-grid">
-        <div class="bento-card large" data-aos="fade-up" data-aos-delay="100">
-          <div class="bento-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                <!-- Large Featured Card -->
+        <div class="bento-card large bento-3d" data-aos="flip-left" data-aos-delay="100" data-aos-duration="800">
+          <div class="bento-icon neon-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2l14 8v12l-14 8-14-8V10l14-8z"/>
             </svg>
           </div>
-          <h3>AI-Powered Detection</h3>
+          <h3><span class="gradient-text">AI-Powered Detection</span></h3>
           <p>Advanced machine learning algorithms automatically identify dates, times, locations, and event details from any webpage with 99.7% accuracy.</p>
           <div class="feature-stats">
             <div class="stat-item">
@@ -119,21 +124,22 @@
           </div>
         </div>
         
-        <div class="bento-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="bento-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
+        <!-- Regular Cards -->
+        <div class="bento-card bento-3d" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
+          <div class="bento-icon neon-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M3 10h18M9 4v2M15 4v2"/>
             </svg>
           </div>
-          <h3>Universal Calendar Sync</h3>
-          <p>Seamlessly integrates with Google Calendar, Outlook, Apple Calendar, and all major calendar platforms.</p>
+          <h3>Calendar Integration</h3>
+          <p>Seamlessly sync with Google Calendar, Outlook, and Apple Calendar</p>
         </div>
         
-        <div class="bento-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="bento-icon">
+        <div class="bento-card bento-3d" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
+        
+        <div class="bento-card bento-3d" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="600">
+          <div class="bento-icon neon-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
@@ -142,8 +148,8 @@
           <p>Process thousands of events in milliseconds with our optimized engine built for speed.</p>
         </div>
         
-        <div class="bento-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="bento-icon">
+        <div class="bento-card bento-3d" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="600">
+          <div class="bento-icon neon-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
@@ -152,8 +158,8 @@
           <p>All processing happens locally in your browser. Your data never leaves your device.</p>
         </div>
         
-        <div class="bento-card wide" data-aos="fade-up" data-aos-delay="500">
-          <div class="bento-icon">
+        <div class="bento-card wide bento-3d" data-aos="fade-right" data-aos-delay="600" data-aos-duration="800">
+          <div class="bento-icon neon-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
               <circle cx="9" cy="7" r="4"></circle>
@@ -165,8 +171,8 @@
           <p>Automatically categorizes events by type, priority, and relevance. Never miss what matters most.</p>
         </div>
         
-        <div class="bento-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="bento-icon">
+        <div class="bento-card bento-3d" data-aos="zoom-in" data-aos-delay="700" data-aos-duration="600">
+          <div class="bento-icon neon-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
             </svg>
@@ -182,12 +188,12 @@
   <section id="testimonials" class="testimonials">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">Loved by Thousands</h2>
+        <h2 class="section-title cyber-glitch">Loved by <span class="gradient-text neon-glow">Thousands</span></h2>
         <p class="section-description">See what our users are saying about CALCLiK</p>
       </div>
       
       <div class="testimonials-grid">
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="testimonial-card bento-3d" data-aos="flip-up" data-aos-delay="100" data-aos-duration="800">
           <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
           <p class="testimonial-text">"CALCLiK has completely transformed how I manage events. No more manual copying and pasting. It just works!"</p>
           <div class="testimonial-author">
@@ -199,7 +205,7 @@
           </div>
         </div>
         
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="testimonial-card bento-3d" data-aos="flip-up" data-aos-delay="200" data-aos-duration="800">
           <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
           <p class="testimonial-text">"The AI detection is incredibly accurate. I use it daily for conference schedules and it saves me hours every week."</p>
           <div class="testimonial-author">
@@ -211,7 +217,7 @@
           </div>
         </div>
         
-        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="testimonial-card bento-3d" data-aos="flip-up" data-aos-delay="300" data-aos-duration="800">
           <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
           <p class="testimonial-text">"Privacy-focused and lightning fast. This is the calendar tool I've been waiting for. Highly recommended!"</p>
           <div class="testimonial-author">
@@ -230,23 +236,23 @@
   <section id="statistics" class="statistics">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="stat-number" data-count="50000">0</div>
+        <div class="stat-card bento-3d cyber-stat-card" data-aos="zoom-in-up" data-aos-delay="100" data-aos-duration="800">
+          <div class="stat-number neon-text" data-count="50000">0</div>
           <div class="stat-label">Active Users</div>
         </div>
         
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="stat-number" data-count="2500000">0</div>
+        <div class="stat-card bento-3d cyber-stat-card" data-aos="zoom-in-up" data-aos-delay="200" data-aos-duration="800">
+          <div class="stat-number neon-text" data-count="2500000">0</div>
           <div class="stat-label">Events Processed</div>
         </div>
         
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="stat-number" data-count="99.7">0</div>
+        <div class="stat-card bento-3d cyber-stat-card" data-aos="zoom-in-up" data-aos-delay="300" data-aos-duration="800">
+          <div class="stat-number neon-text" data-count="99.7">0</div>
           <div class="stat-label">Accuracy Rate</div>
         </div>
         
-        <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="stat-number" data-count="4.9">0</div>
+        <div class="stat-card bento-3d cyber-stat-card" data-aos="zoom-in-up" data-aos-delay="400" data-aos-duration="800">
+          <div class="stat-number neon-text" data-count="4.9">0</div>
           <div class="stat-label">Average Rating</div>
         </div>
       </div>
