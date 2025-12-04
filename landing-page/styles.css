@@ -1,10 +1,13 @@
 /* CALCLiK - Modern Glassmorphism Landing Page */
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Archivo+Black&display=swap');
+
 :root {
   --primary: #00ff88;
   --primary-dark: #00cc6a;
   --secondary: #00d4ff;
   --tertiary: #ff006a;
+  --accent-yellow: #ffde00;
   --dark: #0a0a0f;
   --dark-light: #1a1a24;
   --text: #ffffff;
@@ -14,6 +17,35 @@
   --glow-intensity: 0.5;
   --neon-primary: rgba(0, 255, 136, var(--glow-intensity));
   --neon-secondary: rgba(0, 212, 255, var(--glow-intensity));
+}
+
+/* TBWA Disruptive Design System */
+.disruption-badge {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-yellow);
+  color: var(--dark);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+  box-shadow: 
+    0 4px 20px rgba(255, 222, 0, 0.4),
+    0 0 40px rgba(255, 222, 0, 0.3);
+  animation: badgePulse 2s ease-in-out infinite;
+  transform: rotate(-2deg);
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: rotate(-2deg) scale(1);
+    box-shadow: 0 4px 20px rgba(255, 222, 0, 0.4), 0 0 40px rgba(255, 222, 0, 0.3);
+  }
+  50% {
+    transform: rotate(-2deg) scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 222, 0, 0.6), 0 0 60px rgba(255, 222, 0, 0.5);
+  }
 }
 
 /* Custom Cursor */
@@ -328,6 +360,100 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Disruptive CTA Button */
+.btn-disruptive {
+  padding: 0 !important;
+  height: 80px;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+  position: relative;
+  overflow: visible;
+}
+
+.btn-disruptive::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--primary));
+  border-radius: 14px;
+  z-index: -1;
+  animation: buttonBorderPulse 3s ease-in-out infinite;
+  filter: blur(8px);
+}
+
+@keyframes buttonBorderPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 2rem;
+  flex: 1;
+}
+
+.btn-label {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.btn-sublabel {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.btn-disruptive svg {
+  margin-right: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-disruptive:hover svg {
+  transform: translateX(10px);
+}
+
+/* Social Proof */
+.social-proof {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.proof-stars {
+  color: var(--accent-yellow);
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 222, 0, 0.8));
+}
+
+.proof-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
 .btn-large {
   padding: 1.25rem 2.5rem;
   font-size: 1.1rem;
@@ -388,6 +514,55 @@ body {
 
 .hero-content {
   max-width: 600px;
+}
+
+/* TBWA Disruptive Typography */
+.disruptive-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 0.9;
+}
+
+.disruptive-title .title-sm {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.disruptive-title .title-giant {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 8rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 0.85;
+  margin-bottom: 0.5rem;
+  animation: titleMega 8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.disruptive-title .title-accent {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-style: italic;
+  opacity: 0.9;
+  margin-left: 2rem;
+}
+
+@keyframes titleMega {
+  0%, 100% { 
+    transform: scaleX(1) scaleY(1);
+  }
+  50% { 
+    transform: scaleX(1.02) scaleY(1.02);
+  }
 }
 
 .hero-title {
@@ -522,6 +697,44 @@ body {
     transform: translate(-2px, 2px);
     opacity: 0.6;
   }
+}
+
+/* Disruptive Subtitle */
+.disruptive-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 600px;
+}
+
+.disruptive-sub strong {
+  font-weight: 700;
+  color: var(--primary);
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+}
+
+.highlight-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1.7rem;
+  text-shadow: none;
+  position: relative;
+}
+
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--primary);
 }
 
 .hero-subtitle {
@@ -720,6 +933,65 @@ body {
   margin: 0 auto 4rem;
 }
 
+/* Disruptive Section Headers */
+.disruptive-header {
+  text-align: left;
+  max-width: 100%;
+  margin: 0 0 4rem 0;
+}
+
+.header-kicker {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 255, 136, 0.1);
+  border-left: 4px solid var(--primary);
+  animation: kickerGlow 2s ease-in-out infinite;
+}
+
+@keyframes kickerGlow {
+  0%, 100% {
+    box-shadow: -4px 0 20px rgba(0, 255, 136, 0.3);
+  }
+  50% {
+    box-shadow: -4px 0 30px rgba(0, 255, 136, 0.6);
+  }
+}
+
+.disruptive-section-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.disruptive-section-title .title-line {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 5rem;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.disruptive-section-title .title-line:first-child {
+  opacity: 0.9;
+}
+
+.disruptive-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.7;
+  max-width: 600px;
+}
+
 .section-title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -761,12 +1033,42 @@ body {
   color: var(--text-secondary);
 }
 
-/* Bento Grid */
+/* Disruptive Asymmetric Bento Grid */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  grid-auto-rows: minmax(250px, auto);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
+  grid-auto-rows: minmax(200px, auto);
+}
+
+.bento-card.large {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.bento-card.wide {
+  grid-column: span 3;
+  grid-row: span 1;
+}
+
+.bento-card:nth-child(2) {
+  grid-column: span 2;
+}
+
+.bento-card:nth-child(3) {
+  grid-column: span 2;
+}
+
+.bento-card:nth-child(4) {
+  grid-column: span 2;
+}
+
+.bento-card:nth-child(5) {
+  grid-column: span 3;
+}
+
+.bento-card:nth-child(6) {
+  grid-column: span 3;
 }
 
 /* 3D Skeuomorphic Bento Cards */
@@ -1456,6 +1758,35 @@ body {
     gap: 3rem;
   }
   
+  .disruptive-title .title-giant {
+    font-size: 5rem;
+  }
+  
+  .disruptive-title .title-sm {
+    font-size: 1.5rem;
+  }
+  
+  .disruptive-title .title-accent {
+    font-size: 2rem;
+  }
+  
+  .disruptive-sub {
+    font-size: 1.2rem;
+  }
+  
+  .btn-disruptive {
+    min-width: 100%;
+    height: 70px;
+  }
+  
+  .btn-label {
+    font-size: 1.2rem;
+  }
+  
+  .disruptive-section-title .title-line {
+    font-size: 3.5rem;
+  }
+  
   .hero-title {
     font-size: 3.5rem;
   }
@@ -1464,14 +1795,25 @@ body {
     text-align: center;
   }
   
+  .disruption-badge,
+  .hero-cta {
+    align-items: center;
+    justify-content: center;
+  }
+  
   .bento-grid {
     grid-template-columns: 1fr;
   }
   
   .bento-card.large,
-  .bento-card.wide {
-    grid-column: span 1;
-    grid-row: span 1;
+  .bento-card.wide,
+  .bento-card:nth-child(2),
+  .bento-card:nth-child(3),
+  .bento-card:nth-child(4),
+  .bento-card:nth-child(5),
+  .bento-card:nth-child(6) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
   }
   
   .testimonials-grid {
@@ -1492,6 +1834,47 @@ body {
 }
 
 @media (max-width: 640px) {
+  .disruptive-title .title-giant {
+    font-size: 3rem;
+  }
+  
+  .disruptive-title .title-sm {
+    font-size: 1.2rem;
+  }
+  
+  .disruptive-title .title-accent {
+    font-size: 1.5rem;
+    margin-left: 0;
+  }
+  
+  .disruptive-sub {
+    font-size: 1rem;
+  }
+  
+  .highlight-text {
+    font-size: 1.2rem;
+  }
+  
+  .btn-disruptive {
+    height: 60px;
+  }
+  
+  .btn-label {
+    font-size: 1rem;
+  }
+  
+  .btn-sublabel {
+    font-size: 0.75rem;
+  }
+  
+  .disruptive-section-title .title-line {
+    font-size: 2.5rem;
+  }
+  
+  .disruptive-desc {
+    font-size: 1rem;
+  }
+  
   .hero-title {
     font-size: 2.5rem;
     line-height: 1.2;
