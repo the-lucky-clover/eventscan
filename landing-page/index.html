@@ -381,7 +381,7 @@
       counterObserver.observe(card);
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect with parallax
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
@@ -395,6 +395,206 @@
       
       lastScroll = currentScroll;
     });
+
+    // Advanced 3D Card Tilt Effect (Mouse Follow)
+    const cards = document.querySelectorAll('.bento-3d, .cyber-stat-card, .testimonial-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05) translateZ(20px)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Magnetic Button Effect
+    const buttons = document.querySelectorAll('.cyber-button');
+    buttons.forEach(button => {
+      button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = '';
+      });
+    });
+
+    // Interactive Particle System
+    const particleContainer = document.querySelector('.neon-particles');
+    if (particleContainer) {
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'cyber-particle';
+        particle.style.cssText = `
+          position: absolute;
+          width: ${Math.random() * 4 + 2}px;
+          height: ${Math.random() * 4 + 2}px;
+          background: radial-gradient(circle, rgba(0, 255, 136, 0.8), transparent);
+          border-radius: 50%;
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 100}%;
+          animation: particleDrift ${Math.random() * 10 + 10}s linear infinite;
+          animation-delay: ${Math.random() * 5}s;
+          filter: blur(1px);
+          pointer-events: none;
+        `;
+        particleContainer.appendChild(particle);
+      }
+    }
+
+    // Ripple Effect on Card Click
+    document.querySelectorAll('.bento-card, .testimonial-card, .stat-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const ripple = document.createElement('div');
+        ripple.className = 'ripple-effect';
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: ${size}px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(0, 255, 136, 0.4), transparent);
+          left: ${x}px;
+          top: ${y}px;
+          pointer-events: none;
+          animation: rippleExpand 0.8s ease-out;
+          z-index: 10;
+        `;
+        
+        this.style.position = 'relative';
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 800);
+      });
+    });
+
+    // Smooth Parallax Scrolling for Background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const gridLines = document.querySelector('.grid-lines');
+      const floatingOrbs = document.querySelector('.floating-orbs');
+      
+      if (gridLines) {
+        gridLines.style.transform = `rotateX(60deg) scale(2) translateY(${scrolled * 0.5}px)`;
+      }
+      
+      if (floatingOrbs) {
+        floatingOrbs.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+    });
+
+    // Glow Intensity on Scroll Progress
+    const updateGlowIntensity = () => {
+      const scrollPercentage = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      const intensity = Math.min(scrollPercentage / 100, 1);
+      
+      document.documentElement.style.setProperty('--glow-intensity', intensity);
+    };
+    
+    window.addEventListener('scroll', updateGlowIntensity);
+
+    // Text Reveal Animation on Scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('h1, h2, h3, p').forEach(el => {
+      el.classList.add('reveal-text');
+      observer.observe(el);
+    });
+
+    // Cursor Trail Effect
+    let cursorTrail = [];
+    const trailLength = 10;
+    
+    document.addEventListener('mousemove', (e) => {
+      cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+      
+      if (cursorTrail.length > trailLength) {
+        cursorTrail.shift();
+      }
+      
+      cursorTrail.forEach((point, index) => {
+        if (Date.now() - point.time < 500) {
+          const trail = document.createElement('div');
+          trail.className = 'cursor-trail';
+          trail.style.cssText = `
+            position: fixed;
+            width: ${(index + 1) * 2}px;
+            height: ${(index + 1) * 2}px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 255, 136, ${0.3 - index * 0.03}), transparent);
+            left: ${point.x}px;
+            top: ${point.y}px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease-out forwards;
+            transform: translate(-50%, -50%);
+          `;
+          document.body.appendChild(trail);
+          setTimeout(() => trail.remove(), 500);
+        }
+      });
+    });
+
+    // Add CSS animations for new effects
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes particleDrift {
+        0% { transform: translate(0, 0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translate(${Math.random() * 200 - 100}px, -100vh); opacity: 0; }
+      }
+      
+      @keyframes rippleExpand {
+        0% { transform: scale(0); opacity: 0.6; }
+        100% { transform: scale(2); opacity: 0; }
+      }
+      
+      @keyframes fadeOut {
+        to { opacity: 0; }
+      }
+      
+      .reveal-text {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      
+      .reveal-text.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .bento-3d, .cyber-stat-card, .testimonial-card {
+        transition: transform 0.1s ease-out !important;
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
